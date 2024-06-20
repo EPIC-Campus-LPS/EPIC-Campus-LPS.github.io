@@ -1,0 +1,223 @@
+{
+    "Weapons":[
+        {
+            "Name":"Standerd",
+            "Des":"Bare basic lazer",
+            "Price":0,
+            "Icon":{
+                "X":8,
+                "Y":5,
+                "XScale":1.5,
+                "YScale":1.5,
+                "Rotation":45
+            },
+            "Stats":{
+                "Dmg":2.5,
+                "FR":10,
+                "Speed":7
+            }
+        },
+        {
+            "Name":"Peashooter",
+            "Des":"insert Cuphead refrence",
+            "Price":50,
+            "Icon":{
+                "X":8,
+                "Y":5,
+                "XScale":1.5,
+                "YScale":1.5,
+                "Rotation":45
+            },
+            "Stats":{
+                "Dmg":4,
+                "FR":7.5,
+                "Speed":10
+            }
+        },
+        {
+            "Name":"Bomb",
+            "Des":"Big explotion",
+            "Price":50,
+            "Icon":{
+                "X":30,
+                "Y":25,
+                "XScale":1.15,
+                "YScale":1.15,
+                "Rotation":-15
+            },
+            "Stats":{
+                "Dmg":10,
+                "FR":100,
+                "Speed":10
+            }
+        }
+    ],
+
+    "Drops":[
+        {
+            "Name":"Repair Kit",
+            "Des":"Gives you +25 Heath back",
+            "Price":25,
+            "Rarity":25,
+            "Limit":5,
+            "Icon":{
+                "Sprite":"Repair",
+                "X":0,
+                "Y":0,
+                "XScale":5,
+                "YScale":5,
+                "Rotation":0
+            }
+        },
+        {
+            "Name":"Sheild",
+            "Des":"Cirlce to Protecc you",
+            "Price":50,
+            "Rarity":25,
+            "Limit":3,
+            "Icon":{
+                "X":0,
+                "Y":0,
+                "XScale":3,
+                "YScale":3,
+                "Rotation":0
+            }
+        },
+        {
+            "Name":"DJ",
+            "Des":"25% Firerate, 30% Damage, Plus Plays Music",
+            "Price":50,
+            "Rarity":10,
+            "Limit":1,
+            "Icon":{
+                "X":0,
+                "Y":0,
+                "XScale":0.5,
+                "YScale":0.5,
+                "Rotation":0
+            }
+        },
+        {
+            "Name":"Nuke",
+            "Des":"Guess Fool",
+            "Price":1000,
+            "Rarity":0.3,
+            "Limit":1,
+            "Icon":{
+                "X":0,
+                "Y":0,
+                "XScale":2,
+                "YScale":2,
+                "Rotation":0
+            }
+        }
+    ],
+
+    "Enemies":[
+        {
+            "Name":"Small rock",
+            "Des":"Small = Dealth",
+            "Price":0,
+            "Limit":99,
+            "Rarity":75,
+            "Icon":{
+                "Sprite":"small_rock",
+                "X":0,
+                "Y":0,
+                "XScale":0.8,
+                "YScale":0.8,
+                "Rotation":0
+            },
+            "Stats":{
+                "Health":1,
+                "Hit-Dmg":5,
+                "PPH":5,
+                "Credits":1
+            }
+        },
+        {
+            "Name":"Big Rock",
+            "Des":"Big = Small X2",
+            "Price":0,
+            "Limit":99,
+            "Rarity":75,
+            "Icon":{
+                "Sprite":"big_rock",
+                "X":0,
+                "Y":0,
+                "XScale":0.3,
+                "YScale":0.3,
+                "Rotation":0
+            },
+            "Stats":{
+                "Health":1,
+                "Hit-Dmg":5,
+                "PPH":5,
+                "Credits":1
+            }
+        },
+
+        {
+            "Name":"Shooter",
+            "Des":"Folow + Fire",
+            "Price":10,
+            "Limit":5,
+            "Rarity":25,
+            "Icon":{
+                "X":0,
+                "Y":0,
+                "XScale":0.8,
+                "YScale":0.8,
+                "Rotation":0
+            },
+            "Stats":{
+                "Health":5,
+                "Hit-Dmg":10,
+                "PPH":5,
+                "Credits":5
+            }
+        },
+        {
+            "Name":"Quad shooter",
+            "Des":"Weee + Fire",
+            "Price":10,
+            "Limit":5,
+            "Rarity":25,
+            "Icon":{
+                "Sprite":"quad-shooter",
+                "X":0,
+                "Y":0,
+                "XScale":0.8,
+                "YScale":0.8,
+                "Rotation":0
+            },
+            "Stats":{
+                "Health":510,
+                "Hit-Dmg":25,
+                "PPH":5,
+                "Credits":10
+            }
+        },
+        {
+            "Name":"IMA FIRIN MAH LAZER",
+            "Des":"IMA FIRIN MAH LAZER",
+            "Price":10,
+            "Limit":51,
+            "Rarity":15,
+            "Icon":{
+                "Sprite":"ima_firin",
+                "X":-40,
+                "Y":0,
+                "XScale":0.25,
+                "YScale":0.25,
+                "Rotation":15
+            },
+            "Stats":{
+                "Health":"Inf",
+                "Hit-Dmg":0,
+                "PPH":0,
+                "Credits":0
+            }
+        }
+    ]
+}
