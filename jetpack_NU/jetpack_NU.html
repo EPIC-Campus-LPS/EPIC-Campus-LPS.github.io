@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/gamepagestylesheet.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tiny5">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+    <style>
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Source Code Pro", sans-serif
+        }
+
+        h2 {
+            font-family: "Tiny5", sans-serif
+        }
+
+        .w3-bar-block .w3-bar-item {
+            padding: 20px
+        }
+        
+        body {
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+            overflow: hidden;
+        }
+
+        canvas {
+            image-rendering: optimizeSpeed;
+            -webkit-interpolation-mode: nearest-neighbor;
+            -ms-touch-action: none;
+            touch-action: none;
+            margin: 0px;
+            padding: 0px;
+            position: relative;
+            width: 50%;
+            height: auto;
+            object-fit: contain;
+            /* border-style: solid;
+            border-radius: 3pt;
+            border-color: #00ff00; */
+        }
+
+        :-webkit-full-screen #canvas {
+            width: 60%;
+            height: 60%;
+        }
+
+        :-webkit-full-screen {
+            width: 60%;
+            height: 60%;
+        }
+
+        div.gm4html5_div_class {
+            margin: 0px;
+            padding: 0px;
+            text-align: center;
+        }
+
+        div.gm4html5_login {
+            padding: 20px;
+            position: absolute;
+            border: solid 2px #000000;
+            background-color: #404040;
+            color: #00ff00;
+            border-radius: 15px;
+            box-shadow: #101010 20px 20px 40px;
+        }
+
+        div.gm4html5_cancel_button {
+            float: right;
+        }
+
+        div.gm4html5_login_button {
+            float: left;
+        }
+
+        div.gm4html5_login_header {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w3-top">
+        <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+            <div class="w3-center w3-padding-16">Retro Game Design Camp 2024</div>
+        </div>
+    </div>
+
+    <div class="w3-container w3-padding-32 w3-center">
+        <div class="w3-padding-32">
+            <h1>Survivor: Asteroids</h1>
+            <p>Made by N.U.</p>
+            <p>Your ship follows your mouse and moves with WASD. Tap to shoot quickly or hold to charge the laser with left mouse. Use bombs with right mouse or hold to start timer early. Press space to dash through rocks.</p>
+        </div>
+    </div>
+    
+    <div class="gm4html5_div_class" id="gm4html5_div_id">
+        <canvas id="canvas" width="2000" height="2000" >
+            <p>Your browser doesn't support HTML5 canvas.</p>
+        </canvas>
+    </div>
+
+    <script type="text/javascript" src="html5game/Space Rocks.js?cachebust=1420718688"></script>
+
+>
+    <script>
+        function resizeCanvas() {
+            const canvas = document.getElementById('canvas');
+            const aspectRatio = canvas.width / canvas.height;
+            canvas.style.height = (canvas.offsetWidth / aspectRatio) + 'px';
+        }
+
+        window.onload = function() {
+            GameMaker_Init();
+            resizeCanvas();
+        };
+
+        window.onresize = resizeCanvas;
+    </script>
+
+    <footer class="w3-row-padding w3-padding-32">
+        <a href="../index.html" class="w3-bar-item w3-button w3-hover-black">Back to Homepage</a>
+    </footer>
+</body>
+
+</html>
