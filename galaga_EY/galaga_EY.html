@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/gamepagestylesheet.css">
@@ -87,6 +87,10 @@
             text-align: center;
         }
     </style>
+
+    <!-- Builtin injector for disabling cache -->
+    <meta http-equiv="pragma" content="no-cache"/>
+
 </head>
 
 <body>
@@ -119,7 +123,7 @@
 
     <!-- Run the game code -->
     <script type="text/javascript" src="html5game/Galaga2.js?cachebust=1014085147"></script>
-    
+
     <script>
         function resizeCanvas() {
             const canvas = document.getElementById('canvas');
