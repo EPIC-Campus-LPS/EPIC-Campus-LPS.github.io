@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/gamepagestylesheet.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tiny5">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+    <style>
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Source Code Pro", sans-serif
+        }
+
+        h2 {
+            font-family: "Tiny5", sans-serif
+        }
+
+        .w3-bar-block .w3-bar-item {
+            padding: 20px
+        }
+        
+        body {
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+            overflow: hidden;
+        }
+
+        canvas {
+            image-rendering: optimizeSpeed;
+            -webkit-interpolation-mode: nearest-neighbor;
+            -ms-touch-action: none;
+            touch-action: none;
+            margin: 0px;
+            padding: 0px;
+            position: relative;
+            width: 50%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        :-webkit-full-screen #canvas {
+            width: 60%;
+            height: 60%;
+        }
+
+        :-webkit-full-screen {
+            width: 60%;
+            height: 60%;
+        }
+
+        div.gm4html5_div_class {
+            margin: 0px;
+            padding: 0px;
+            text-align: center;
+        }
+
+        div.gm4html5_login {
+            padding: 20px;
+            position: absolute;
+            border: solid 2px #000000;
+            background-color: #404040;
+            color: #00ff00;
+            border-radius: 15px;
+            box-shadow: #101010 20px 20px 40px;
+        }
+
+        div.gm4html5_cancel_button {
+            float: right;
+        }
+
+        div.gm4html5_login_button {
+            float: left;
+        }
+
+        div.gm4html5_login_header {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w3-top">
+        <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+            <div class="w3-center w3-padding-16">Retro Game Design Camp 2024</div>
+        </div>
+    </div>
+
+    <div class="w3-container w3-padding-32 w3-center">
+        <div class="w3-padding-32">
+            <h1>Galaga</h1>
+            <p>Made by E.Y.</p>
+        </div>
+        <!-- <div class="w3-center w3-padding-16" style="max-width:1200px;margin:auto">
+            <p style="text-align:left;"><b>Controls:</b>
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;• WASD - movement
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;• Left, Right - Rotation
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;• Shift - switch between weapons
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;• Space - Fire Weapon
+            </p>
+        </div> -->
+    </div>
+    
+    <div class="gm4html5_div_class" id="gm4html5_div_id">
+        <canvas id="canvas" width="1800" height="2200" >
+            <p>Your browser doesn't support HTML5 canvas.</p>
+        </canvas>
+    </div>
+
+    <!-- Run the game code -->
+    <script type="text/javascript" src="html5game/Galaga2.js?cachebust=1014085147"></script>
+    
+    <script>
+        function resizeCanvas() {
+            const canvas = document.getElementById('canvas');
+            const aspectRatio = canvas.width / canvas.height;
+            canvas.style.height = (canvas.offsetWidth / aspectRatio) + 'px';
+        }
+
+        window.onload = function() {
+            GameMaker_Init();
+            resizeCanvas();
+        };
+
+        window.onresize = resizeCanvas;
+    </script>
+
+    <footer class="w3-row-padding w3-padding-32">
+        <a href="../index.html" class="w3-bar-item w3-button w3-hover-black">Back to Homepage</a>
+    </footer>
+</body>
+
+</html>
