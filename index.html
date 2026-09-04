@@ -1,151 +1,868 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>Retro Game Design</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/homepagestylesheet.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tiny5">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
-  <style>
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: "Source Code Pro", sans-serif
-    }
-
-    h2 {
-      font-family: "Tiny5", sans-serif
-    }
-
-    .w3-bar-block .w3-bar-item {
-      padding: 20px
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CNA Student Charting Tool</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-
-  <!-- Top menu -->
-  <div class="w3-top">
-    <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-      <div class="w3-center w3-padding-16">Retro Game Design Camp 2024</div>
-    </div>
+<div class="toolbar no-print">
+  <div class="toolbar-inner">
+    <span class="toolbar-title">CNA Student Charting Tool</span>
+    <span id="saveStatus" class="save-status"></span>
   </div>
+</div>
 
-  <hr id="about">
+<main id="app">
 
-  <!-- About Section -->
-  <div class="w3-container w3-padding-32 w3-center">
-    <div class="w3-center w3-padding-16" style="max-width:1200px;margin:auto">
-      <p style="text-align:left;">Check out these games made by EPIC Campus students during Retro Game Design summer
-        camp. Working alone or in
-        small groups, each development team added their own unique features to clones of classic games.</p>
+  <section id="chartSelect" class="selector">
+    <h1>Choose a Chart to Fill Out</h1>
+    <p class="selector-hint">Pick the chart you need. Your answers are saved automatically in this browser.</p>
+    <div class="chart-cards">
+      <button type="button" class="chart-card" data-target="chart1">
+        <h3>CNA-to-CNA Shift Report Sheet</h3>
+        <p>Patient status, safety &amp; alerts, ADLs, vital signs, elimination, nutrition, devices/drains/lines, and shift notes.</p>
+      </button>
+      <button type="button" class="chart-card" data-target="chart2">
+        <h3>Body Systems Review of Symptoms</h3>
+        <p>Checklist across musculoskeletal, cardiovascular, integumentary, lymphatic, respiratory, nervous, GI, GU, reproductive, and endocrine systems.</p>
+      </button>
+      <button type="button" class="chart-card" data-target="chart3">
+        <h3>CNA End-of-Shift Intake &amp; Output (I&amp;O) Record</h3>
+        <p>Meal/fluid intake, urine &amp; stool output and characteristics, emesis, drains, and shift totals.</p>
+      </button>
     </div>
-  </div>
-  <hr>
+  </section>
 
+  <!-- ===================== CHART 1: CNA-to-CNA Shift Report Sheet ===================== -->
+  <div id="chart1" class="sheet" data-storage="cnaChartDraft_chart1" hidden>
+    <div class="sheet-toolbar no-print">
+      <button type="button" class="btn btn-secondary backBtn">&larr; Change Chart</button>
+      <button type="button" class="btn btn-secondary clearBtn">Clear Form</button>
+    </div>
 
+    <h1>CNA-to-CNA Shift Report Sheet</h1>
 
-  <!-- !PAGE CONTENT! -->
-  <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+    <div class="row header-row">
+      <label class="field grow">Date <input type="text" name="date" placeholder="__________"></label>
+      <label class="field grow">Shift <input type="text" name="shift" placeholder="AM / PM / NOC"></label>
+      <label class="field grow">Outgoing CNA <input type="text" name="outgoingCna" placeholder="__________"></label>
+    </div>
+    <div class="row">
+      <label class="field grow">Incoming CNA <input type="text" name="incomingCna" placeholder="__________"></label>
+    </div>
 
-    <!-- First Photo Grid-->
-    <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-      <div class="w3-quarter">
-        <a href="tetris_JP/tetris_JP.html"><img src="tetris_JP/tetris_JP.png" alt="tetris_JP" style="width:100%"></a>
-        <h3>Tetris Modified</h3>
-        <p><i>Made by J.P.</i></p>
-        <p>A classic recreation of NES Tetris but with some modifications.</p>
-        <a href="tetris_JP/tetris_JP.html" class="w3-bar-item w3-button w3-hover-black"><u>Play now!</u></a>
+    <section>
+      <h2>Patient Information &amp; Status</h2>
+
+      <div class="row">
+        <label class="field grow">Room/Bed <input type="text" name="roomBed"></label>
+      </div>
+      <div class="row">
+        <label class="field grow-2">Patient Name <input type="text" name="patientName"></label>
+        <label class="field grow">Age/Gender <input type="text" name="ageGender"></label>
       </div>
 
-      <div class="w3-quarter">
-        <div onclick="window.location.href = 'galaga_EY/galaga_EY.html'">
-          <video src="galaga_EY/galaga_EY.mp4" width="100%" height="100%" autoplay muted controls loop>
-            Your browser does not support the video tag.
-          </video>
+      <div class="field-group">
+        <span class="group-label">Code Status</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="codeStatus" value="Full Code"> Full Code</label>
+          <label class="chk"><input type="checkbox" name="codeStatus" value="DNR"> DNR</label>
+          <label class="chk"><input type="checkbox" name="codeStatus" value="DNI"> DNI</label>
+          <label class="chk"><input type="checkbox" name="codeStatus" value="Comfort"> Comfort</label>
         </div>
-        <h3>Galaga</h3>
-        <p><i>Made by E.Y.</i></p>
-        <a href="galaga_EY/galaga_EY.html" class="w3-bar-item w3-button w3-hover-black"><u>Play now!</u></a>
       </div>
 
-      <div class="w3-quarter">
-        <a href="jetpack_NU/jetpack_NU.html"><img src="jetpack_NU/jetpack_NU.png" alt="tetris_JP"
-            style="width:100%"></a>
-        <h3>Survivor: RogueRide</h3>
-        <p><i>Made by N.U.</i></p>
-        <a href="jetpack_NU/jetpack_NU.html" class="w3-bar-item w3-button w3-hover-black"><u>Play now!</u></a>
-      </div>
-
-      <div class="w3-quarter">
-        <div onclick="window.location.href = 'asteroids_KW/asteroids_KW.html'">
-          <video src="asteroids_KW/asteroids_KW.mp4" width="100%" height="100%" autoplay muted controls loop>
-            Your browser does not support the video tag.
-          </video>
+      <div class="field-group">
+        <span class="group-label">Mental Status/Cognition</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="mentalStatus" value="Alert & Oriented"> Alert &amp; Oriented</label>
+          <label class="chk"><input type="checkbox" name="mentalStatus" value="Confused/Forgetful"> Confused/Forgetful</label>
+          <label class="chk"><input type="checkbox" name="mentalStatus" value="Non-verbal"> Non-verbal</label>
+          <label class="chk"><input type="checkbox" name="mentalStatus" value="Combative/Anxious"> Combative/Anxious</label>
         </div>
-        <h3>Asteroids Reimagined</h3>
-        <p><i>Made by K.W.</i></p>
-        <a href="asteroids_KW/asteroids_KW.html" class="w3-bar-item w3-button w3-hover-black"><u>Play now!</u></a>
       </div>
 
+      <div class="field-group">
+        <span class="group-label">Allergies</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="allergiesNkda" value="NKDA"> No Known Drug Allergies (NKDA)</label>
+          <label class="chk inline-input"><input type="checkbox" name="allergiesHas" value="Allergies to"> Allergies to: <input type="text" name="allergiesText" class="inline-text"></label>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Safety &amp; Alerts</h2>
+
+      <div class="field-group">
+        <span class="group-label">Fall Risk</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="fallRisk" value="Low"> Low</label>
+          <label class="chk"><input type="checkbox" name="fallRisk" value="High"> High (Yellow socks / Wristband active)</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Mobility Restrictions</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="mobilityRestrictions" value="Strict Bedrest"> Strict Bedrest</label>
+          <label class="chk"><input type="checkbox" name="mobilityRestrictions" value="WBAT"> Weight-Bearing As Tolerated (WBAT)</label>
+          <label class="chk"><input type="checkbox" name="mobilityRestrictions" value="NWB"> Non-Weight Bearing (NWB)</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Precautions</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="precautions" value="Standard"> Standard</label>
+          <label class="chk"><input type="checkbox" name="precautions" value="Contact"> Contact</label>
+          <label class="chk"><input type="checkbox" name="precautions" value="Contact Plus"> Contact Plus</label>
+          <label class="chk"><input type="checkbox" name="precautions" value="Droplet"> Droplet</label>
+          <label class="chk"><input type="checkbox" name="precautions" value="Airborne"> Airborne</label>
+          <label class="chk"><input type="checkbox" name="precautions" value="Neutropenic"> Neutropenic</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Safety Measures</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="safetyMeasures" value="Bed alarm active"> Bed alarm active</label>
+          <label class="chk"><input type="checkbox" name="safetyMeasures" value="Chair alarm active"> Chair alarm active</label>
+          <label class="chk"><input type="checkbox" name="safetyMeasures" value="Low bed"> Low bed</label>
+          <label class="chk"><input type="checkbox" name="safetyMeasures" value="Floor mats in place"> Floor mats in place</label>
+          <label class="chk"><input type="checkbox" name="safetyMeasures" value="Sitter"> Sitter</label>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Activities of Daily Living (ADLs) &amp; Mobility</h2>
+
+      <div class="field-group">
+        <span class="group-label">Transfer Assist</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="transferAssist" value="Independent"> Independent</label>
+          <label class="chk"><input type="checkbox" name="transferAssist" value="1-Person Assist"> 1-Person Assist</label>
+          <label class="chk"><input type="checkbox" name="transferAssist" value="2-Person Assist"> 2-Person Assist</label>
+          <label class="chk"><input type="checkbox" name="transferAssist" value="Sit-to-Stand"> Sit-to-Stand</label>
+          <label class="chk"><input type="checkbox" name="transferAssist" value="Hoyer Lift"> Hoyer Lift</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Ambulation</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="ambulation" value="Independent"> Independent</label>
+          <label class="chk"><input type="checkbox" name="ambulation" value="Ambulate w/ min. assist"> Ambulate w/ min. assist</label>
+          <label class="chk"><input type="checkbox" name="ambulation" value="Ambulate w/ mod. assist"> Ambulate w/ mod. assist</label>
+          <label class="chk"><input type="checkbox" name="ambulation" value="Ambulate with max. assist"> Ambulate with max. assist</label>
+          <label class="chk inline-input"><input type="checkbox" name="ambulationDistanceChk" value="Distance"> Distance: <input type="text" name="ambulationDistance" class="inline-text"></label>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Ambulation Devices used</span>
+          <label class="chk"><input type="checkbox" name="ambulationDevices" value="Uses Cane"> Uses Cane</label>
+          <label class="chk"><input type="checkbox" name="ambulationDevices" value="Uses Walker"> Uses Walker</label>
+          <label class="chk"><input type="checkbox" name="ambulationDevices" value="Uses Crutches"> Uses Crutches</label>
+          <label class="chk"><input type="checkbox" name="ambulationDevices" value="Wheelchair"> Wheelchair</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Repositioning</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="repositioning" value="Independent"> Independent</label>
+          <label class="chk"><input type="checkbox" name="repositioning" value="Turn every 2 hours"> Turn every 2 hours</label>
+          <label class="chk"><input type="checkbox" name="repositioning" value="Offload heels"> Offload heels</label>
+          <label class="chk"><input type="checkbox" name="repositioning" value="Special mattress/cushion"> Special mattress/cushion</label>
+        </div>
+        <div class="row sub">
+          <label class="field grow">Last turned <input type="text" name="lastTurned"></label>
+          <label class="field grow">Turning Schedule Times <input type="text" name="turningSchedule"></label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Range of Motion</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="rangeOfMotion" value="AROM"> AROM</label>
+          <label class="chk"><input type="checkbox" name="rangeOfMotion" value="AAROM"> AAROM</label>
+          <label class="chk"><input type="checkbox" name="rangeOfMotion" value="PROM"> PROM</label>
+        </div>
+        <div class="row sub">
+          <label class="field grow">Frequency <input type="text" name="romFrequency"></label>
+          <label class="field grow">Location <input type="text" name="romLocation"></label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Grooming/Bathing</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="groomingBathing" value="Independent"> Independent</label>
+          <label class="chk"><input type="checkbox" name="groomingBathing" value="Setup Only"> Setup Only</label>
+          <label class="chk"><input type="checkbox" name="groomingBathing" value="Partial Assist"> Partial Assist</label>
+          <label class="chk"><input type="checkbox" name="groomingBathing" value="Complete Bed Bath"> Complete Bed Bath</label>
+          <label class="chk"><input type="checkbox" name="groomingBathing" value="Shower Privileges"> Shower Privileges</label>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Vital Signs</h2>
+
+      <div class="field-group">
+        <span class="group-label">Frequency</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="vitalsFrequency" value="Q2 hrs"> Q2 hrs</label>
+          <label class="chk"><input type="checkbox" name="vitalsFrequency" value="Q4 hrs"> Q4 hrs</label>
+          <label class="chk"><input type="checkbox" name="vitalsFrequency" value="Q8 hrs"> Q8 hrs</label>
+          <label class="chk"><input type="checkbox" name="vitalsFrequency" value="Once per shift"> Once per shift</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Temperature</span>
+        <div class="row">
+          <label class="field">Value <input type="text" name="temperature"></label>
+          <div class="options inline-options">
+            <label class="chk"><input type="checkbox" name="tempUnit" value="F"> °F</label>
+            <label class="chk"><input type="checkbox" name="tempUnit" value="C"> °C</label>
+          </div>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Route</span>
+          <label class="chk"><input type="checkbox" name="tempRoute" value="Oral"> Oral</label>
+          <label class="chk"><input type="checkbox" name="tempRoute" value="Axillary"> Axillary</label>
+          <label class="chk"><input type="checkbox" name="tempRoute" value="Temporal"> Temporal</label>
+          <label class="chk"><input type="checkbox" name="tempRoute" value="Tympanic"> Tympanic</label>
+          <label class="chk"><input type="checkbox" name="tempRoute" value="Rectal"> Rectal</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Pulse</span>
+        <div class="row">
+          <label class="field">Value (bpm) <input type="text" name="pulse"></label>
+          <div class="options inline-options">
+            <label class="chk"><input type="checkbox" name="pulseMethod" value="Radial"> Radial</label>
+            <label class="chk"><input type="checkbox" name="pulseMethod" value="Apical"> Apical</label>
+            <label class="chk"><input type="checkbox" name="pulseMethod" value="Monitor"> Monitor</label>
+          </div>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Quality</span>
+          <label class="chk"><input type="checkbox" name="pulseQuality" value="Regular"> Regular</label>
+          <label class="chk"><input type="checkbox" name="pulseQuality" value="Irregular"> Irregular</label>
+          <label class="chk"><input type="checkbox" name="pulseQuality" value="Difficult to palpate"> Difficult to palpate</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Respirations</span>
+        <div class="row">
+          <label class="field">Value (breaths/min) <input type="text" name="respirations"></label>
+          <div class="options inline-options">
+            <label class="chk"><input type="checkbox" name="respMethod" value="Visual"> Visual</label>
+            <label class="chk"><input type="checkbox" name="respMethod" value="Auscultated"> Auscultated</label>
+            <label class="chk"><input type="checkbox" name="respMethod" value="Monitor"> Monitor</label>
+          </div>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Quality</span>
+          <label class="chk"><input type="checkbox" name="respQuality" value="Regular"> Regular</label>
+          <label class="chk"><input type="checkbox" name="respQuality" value="Irregular"> Irregular</label>
+          <label class="chk"><input type="checkbox" name="respQuality" value="Labored"> Labored</label>
+          <label class="chk"><input type="checkbox" name="respQuality" value="Kussmaul"> Kussmaul</label>
+          <label class="chk"><input type="checkbox" name="respQuality" value="Agonal"> Agonal</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Blood Pressure</span>
+        <div class="row">
+          <label class="field">Value (mmHg) <input type="text" name="bloodPressure"></label>
+          <div class="options inline-options">
+            <label class="chk"><input type="checkbox" name="bpMethod" value="Manual"> Manual</label>
+            <label class="chk"><input type="checkbox" name="bpMethod" value="Electronic"> Electronic</label>
+          </div>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Location</span>
+          <label class="chk"><input type="checkbox" name="bpLocation" value="Right Arm"> Right Arm</label>
+          <label class="chk"><input type="checkbox" name="bpLocation" value="Left Arm"> Left Arm</label>
+          <label class="chk"><input type="checkbox" name="bpLocation" value="Right Leg"> Right Leg</label>
+          <label class="chk"><input type="checkbox" name="bpLocation" value="Left Leg"> Left Leg</label>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Cuff size</span>
+          <label class="chk"><input type="checkbox" name="cuffSize" value="Infant"> Infant</label>
+          <label class="chk"><input type="checkbox" name="cuffSize" value="Child"> Child</label>
+          <label class="chk"><input type="checkbox" name="cuffSize" value="Small Adult"> Small Adult</label>
+          <label class="chk"><input type="checkbox" name="cuffSize" value="Adult"> Adult</label>
+          <label class="chk"><input type="checkbox" name="cuffSize" value="Adult Long"> Adult Long</label>
+          <label class="chk"><input type="checkbox" name="cuffSize" value="Large Adult"> Large Adult</label>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Position</span>
+          <label class="chk"><input type="checkbox" name="bpPosition" value="Lying"> Lying</label>
+          <label class="chk"><input type="checkbox" name="bpPosition" value="Sitting"> Sitting</label>
+          <label class="chk"><input type="checkbox" name="bpPosition" value="Standing"> Standing</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">SPO2</span>
+        <div class="row">
+          <label class="field">Value (%) <input type="text" name="spo2"></label>
+          <div class="options inline-options">
+            <label class="chk"><input type="checkbox" name="spo2Source" value="Room Air"> Room Air</label>
+            <label class="chk"><input type="checkbox" name="spo2Source" value="Oxygen"> Oxygen</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Elimination &amp; Output</h2>
+
+      <div class="field-group">
+        <span class="group-label">Toileting</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="toileting" value="Independent"> Independent</label>
+          <label class="chk"><input type="checkbox" name="toileting" value="BRP"> BRP (Bathroom privileges)</label>
+          <label class="chk"><input type="checkbox" name="toileting" value="Commode"> Commode</label>
+          <label class="chk"><input type="checkbox" name="toileting" value="Bedpan/Urinal"> Bedpan/Urinal</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Incontinence Care</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="incontinenceCare" value="Continent"> Continent</label>
+          <label class="chk"><input type="checkbox" name="incontinenceCare" value="Incontinent Bladder"> Incontinent Bladder</label>
+          <label class="chk"><input type="checkbox" name="incontinenceCare" value="Incontinent Bowel"> Incontinent Bowel</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Devices</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="eliminationDevices" value="Foley Catheter"> Foley Catheter</label>
+          <label class="chk"><input type="checkbox" name="eliminationDevices" value="PureWick/Condom Catheter"> PureWick/Condom Catheter</label>
+          <label class="chk"><input type="checkbox" name="eliminationDevices" value="Colostomy/Ostomy bag"> Colostomy/Ostomy bag</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Tracking Required</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="trackingRequired" value="Strict I/O"> Strict I/O (In/Out)</label>
+          <label class="chk"><input type="checkbox" name="trackingRequired" value="Save stool sample"> Save stool sample</label>
+          <label class="chk"><input type="checkbox" name="trackingRequired" value="Save urine sample"> Save urine sample</label>
+        </div>
+        <div class="row sub">
+          <label class="field grow">Last Bowel Movement (BM) Date/Shift <input type="text" name="lastBm"></label>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Nutrition &amp; Hydration</h2>
+
+      <div class="field-group">
+        <span class="group-label">Diet Type</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="dietType" value="Regular"> Regular</label>
+          <label class="chk"><input type="checkbox" name="dietType" value="NPO"> NPO</label>
+          <label class="chk"><input type="checkbox" name="dietType" value="Clear Liquid"> Clear Liquid</label>
+          <label class="chk"><input type="checkbox" name="dietType" value="Full Liquid"> Full Liquid</label>
+          <label class="chk"><input type="checkbox" name="dietType" value="Modified Calorie"> Modified Calorie</label>
+          <label class="chk"><input type="checkbox" name="dietType" value="Soft/Mechanical Altered"> Soft/Mechanical Altered</label>
+          <label class="chk"><input type="checkbox" name="dietType" value="Pureed"> Pureed</label>
+          <label class="chk"><input type="checkbox" name="dietType" value="Thickened Liquids"> Thickened Liquids</label>
+          <label class="chk"><input type="checkbox" name="dietType" value="Low Protein"> Low Protein</label>
+          <label class="chk"><input type="checkbox" name="dietType" value="Diabetic"> Diabetic</label>
+          <label class="chk"><input type="checkbox" name="dietType" value="Low Sodium"> Low Sodium</label>
+          <label class="chk"><input type="checkbox" name="dietType" value="Low Fat"> Low Fat</label>
+          <label class="chk"><input type="checkbox" name="dietType" value="Vegetarian"> Vegetarian</label>
+          <label class="chk"><input type="checkbox" name="dietType" value="Pescatarian"> Pescatarian</label>
+          <label class="chk"><input type="checkbox" name="dietType" value="Vegan"> Vegan</label>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Thickened Liquids type</span>
+          <label class="chk"><input type="checkbox" name="thickenedType" value="Nectar"> Nectar</label>
+          <label class="chk"><input type="checkbox" name="thickenedType" value="Honey"> Honey</label>
+          <label class="chk"><input type="checkbox" name="thickenedType" value="Pudding"> Pudding</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Feeding Assist</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="feedingAssist" value="Independent"> Independent</label>
+          <label class="chk"><input type="checkbox" name="feedingAssist" value="Setup/Encouragement Only"> Setup/Encouragement Only</label>
+          <label class="chk"><input type="checkbox" name="feedingAssist" value="Total Feed"> Total Feed</label>
+          <label class="chk"><input type="checkbox" name="feedingAssist" value="Tube Feed"> Tube Feed</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Fluid Target</span>
+        <div class="options">
+          <label class="chk inline-input"><input type="checkbox" name="fluidRestrict" value="Restrict Fluids"> Restrict Fluids (<input type="text" name="fluidRestrictMax" class="inline-text small"> mL max)</label>
+        </div>
+        <div class="row sub">
+          <label class="field">AM shift (mL) <input type="text" name="fluidAm"></label>
+          <label class="field">PM shift (mL) <input type="text" name="fluidPm"></label>
+          <label class="field">NOC shift (mL) <input type="text" name="fluidNoc"></label>
+        </div>
+        <div class="options">
+          <label class="chk inline-input"><input type="checkbox" name="fluidEncourage" value="Encourage Fluids"> Encourage Fluids (<input type="text" name="fluidEncourageTarget" class="inline-text small"> mL target)</label>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Devices/Drains/Lines</h2>
+
+      <div class="field-group">
+        <span class="group-label">Connected Equipment <em>(Be careful during turns/transfers)</em></span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="connectedEquipment" value="SCDs"> SCDs</label>
+          <label class="chk"><input type="checkbox" name="connectedEquipment" value="Telemetry"> Telemetry</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Drains</span>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="drains" value="Wound Vac"> Wound Vac</label>
+          <label class="chk inline-input"><input type="checkbox" name="drainsJp" value="JP"> JP: Location <input type="text" name="drainsJpLocation" class="inline-text"></label>
+          <label class="chk inline-input"><input type="checkbox" name="drainsOther" value="Other"> Other: <input type="text" name="drainsOtherText" class="inline-text"></label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">Lines</span>
+        <div class="options">
+          <label class="chk inline-input"><input type="checkbox" name="linesIv" value="IV Line"> IV Line (Location: <input type="text" name="linesIvLocation" class="inline-text"> )</label>
+          <label class="chk"><input type="checkbox" name="linesOxygen" value="Oxygen"> Oxygen (via NC/Mask)</label>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Shift Notes &amp; Specific Instructions</h2>
+      <p class="hint">Record any specific behaviors, family requests, or tasks left for the incoming shift.</p>
+      <textarea name="shiftNotes" rows="6" class="notes"></textarea>
+    </section>
+
+    <section>
+      <h2>Bedside Handoff Completed Check</h2>
+      <div class="options">
+        <label class="chk"><input type="checkbox" name="handoffCheck" value="Room tidy/trash emptied"> Room tidy/trash emptied</label>
+        <label class="chk"><input type="checkbox" name="handoffCheck" value="Fresh water pitcher provided"> Fresh water pitcher provided</label>
+        <label class="chk"><input type="checkbox" name="handoffCheck" value="Call light within reach"> Call light within reach</label>
+        <label class="chk"><input type="checkbox" name="handoffCheck" value="Bed low and locked"> Bed low and locked</label>
+      </div>
+    </section>
+
+    <div class="export-row no-print">
+      <button type="button" class="btn btn-primary exportBtn">Export to PDF</button>
     </div>
-
-    <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-      <div class="w3-quarter">
-        <a href="asteroids_JP/asteroids_JP.html"><img src="asteroids_JP/asteroids_JP.png" alt="tetris_JP"
-            style="width:100%"></a>
-        <h3>Ship Gotta Shoot</h3>
-        <p><i>Made by J.P.</i></p>
-        <p>A clone of Asteroids with lots of modifications.</p>
-        <a href="asteroids_JP/asteroids_JP.html" class="w3-bar-item w3-button w3-hover-black"><u>Play now!</u></a>
-      </div>
-
-      <div class="w3-quarter">
-        <a href="spacerocks_NU/spacerocks_NU.html"><img src="spacerocks_NU/spacerocks_NU.png" alt="tetris_JP"
-            style="width:100%"></a>
-        <h3>Survivor: Asteroids</h3>
-        <p><i>Made by N.U.</i></p>
-        <a href="spacerocks_NU/spacerocks_NU.html" class="w3-bar-item w3-button w3-hover-black"><u>Play now!</u></a>
-      </div>
-
-      <div class="w3-quarter">
-        <a href="antismash_KW/antismash_KW.html"><img src="antismash_KW/antismash_KW.png" alt="antismash_KW"
-            style="width:100%"></a>
-        <h3>Anti-Smash Remix</h3>
-        <p><i>Made by K.W.</i></p>
-        <p>Move the blocks with WASD and press R to restart.</p>
-        <a href="antismash_KW/antismash_KW.html" class="w3-bar-item w3-button w3-hover-black"><u>Play now!</u></a>
-      </div>
-
-      <div class="w3-quarter">
-        <a href="fishinspace_EB/fishinspace_EB.html"><img src="fishinspace_EB/fishinspace_EB.png" alt="fishinspace_EB"
-            style="width:100%"></a>
-        <h3>Fish in Space</h3>
-        <p><i>Made by E.B.</i></p>
-        <p>Fly your fish through space while avoiding pink blobs and rocks!</p>
-        <a href="fishinspace_EB/fishinspace_EB.html" class="w3-bar-item w3-button w3-hover-black"><u>Play now!</u></a>
-      </div>
-    </div>
-
-
-
-    <div class="w3-center w3-padding-32"></div>
-    <div class="w3-center w3-padding-32"></div>
-    <div class="w3-center w3-padding-32"></div>
-
-    <!-- End page content -->
   </div>
 
+  <!-- ===================== CHART 2: Body Systems Review of Symptoms ===================== -->
+  <div id="chart2" class="sheet" data-storage="cnaChartDraft_chart2" hidden>
+    <div class="sheet-toolbar no-print">
+      <button type="button" class="btn btn-secondary backBtn">&larr; Change Chart</button>
+      <button type="button" class="btn btn-secondary clearBtn">Clear Form</button>
+    </div>
 
+    <h1>Body Systems Review of Symptoms</h1>
 
+    <div class="row header-row">
+      <label class="field grow">Patient Name <input type="text" name="patientName"></label>
+      <label class="field grow">Room/Bed <input type="text" name="roomBed"></label>
+      <label class="field grow">Date <input type="text" name="date"></label>
+    </div>
+
+    <section>
+      <h2>Musculoskeletal</h2>
+      <div class="options">
+        <label class="chk"><input type="checkbox" name="msk" value="Muscle Pain"> Muscle Pain</label>
+        <label class="chk"><input type="checkbox" name="msk" value="Muscle weakness"> Muscle weakness</label>
+        <label class="chk"><input type="checkbox" name="msk" value="Muscle Atrophy"> Muscle Atrophy</label>
+        <label class="chk"><input type="checkbox" name="msk" value="Muscle stiffness"> Muscle stiffness</label>
+        <label class="chk"><input type="checkbox" name="msk" value="Low back pain"> Low back pain</label>
+        <label class="chk inline-input"><input type="checkbox" name="msk" value="Contracture"> Contracture — Location: <input type="text" name="mskContractureLocation" class="inline-text"></label>
+        <label class="chk inline-input"><input type="checkbox" name="msk" value="Joint pain"> Joint pain — Location: <input type="text" name="mskJointPainLocation" class="inline-text"></label>
+        <label class="chk inline-input"><input type="checkbox" name="msk" value="Joint swelling"> Joint swelling — Location: <input type="text" name="mskJointSwellingLocation" class="inline-text"></label>
+        <label class="chk inline-input"><input type="checkbox" name="msk" value="Joint redness"> Joint redness — Location: <input type="text" name="mskJointRednessLocation" class="inline-text"></label>
+        <label class="chk"><input type="checkbox" name="msk" value="Loss of height"> Loss of height</label>
+        <label class="chk"><input type="checkbox" name="msk" value="Stooped posture"> Stooped posture</label>
+        <label class="chk"><input type="checkbox" name="msk" value="Decreased mobility"> Decreased mobility</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Cardiovascular &amp; Circulatory</h2>
+      <div class="options">
+        <label class="chk"><input type="checkbox" name="cardio" value="Chest pain or discomfort (Angina)"> Chest pain or discomfort (Angina)</label>
+        <label class="chk"><input type="checkbox" name="cardio" value="Shortness of breath"> Shortness of breath</label>
+        <label class="chk inline-input"><input type="checkbox" name="cardio" value="Edema"> Edema — Location: <input type="text" name="cardioEdemaLocation" class="inline-text"></label>
+        <label class="chk"><input type="checkbox" name="cardio" value="Fatigue"> Fatigue</label>
+        <label class="chk"><input type="checkbox" name="cardio" value="Needs frequent rest periods during ADLs"> Needs frequent rest periods during ADLs</label>
+        <label class="chk"><input type="checkbox" name="cardio" value="Exercise Intolerance"> Exercise Intolerance</label>
+        <label class="chk"><input type="checkbox" name="cardio" value="Left arm pain"> Left arm pain</label>
+        <label class="chk"><input type="checkbox" name="cardio" value="Low back pain"> Low back pain</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Integumentary</h2>
+      <div class="options">
+        <label class="chk"><input type="checkbox" name="integ" value="Dry skin"> Dry skin</label>
+        <label class="chk"><input type="checkbox" name="integ" value="Pale skin"> Pale skin</label>
+        <label class="chk"><input type="checkbox" name="integ" value="Flaky skin"> Flaky skin</label>
+        <label class="chk"><input type="checkbox" name="integ" value="Moist skin"> Moist skin</label>
+        <label class="chk"><input type="checkbox" name="integ" value="Clammy skin"> Clammy skin</label>
+        <label class="chk"><input type="checkbox" name="integ" value="Open skin tear"> Open skin tear</label>
+        <label class="chk"><input type="checkbox" name="integ" value="Skin irritation/breakdown from prolonged moisture"> Skin irritation/breakdown from prolonged moisture</label>
+        <label class="chk"><input type="checkbox" name="integ" value="Rash"> Rash</label>
+        <label class="chk"><input type="checkbox" name="integ" value="Itchiness"> Itchiness</label>
+        <label class="chk"><input type="checkbox" name="integ" value="Bruising"> Bruising</label>
+        <label class="chk"><input type="checkbox" name="integ" value="Hard, brittle nails"> Hard, brittle nails</label>
+        <label class="chk"><input type="checkbox" name="integ" value="Discolored moles"> Discolored moles</label>
+        <label class="chk"><input type="checkbox" name="integ" value="Irregular shaped moles"> Irregular shaped moles</label>
+        <label class="chk"><input type="checkbox" name="integ" value="Redness on feet"> Redness on feet</label>
+        <label class="chk"><input type="checkbox" name="integ" value="Foot ulcers"> Foot ulcers</label>
+      </div>
+      <div class="options sub">
+        <span class="sub-label">Skin Integrity</span>
+        <label class="chk"><input type="checkbox" name="skinIntegrity" value="Intact"> Intact</label>
+        <label class="chk"><input type="checkbox" name="skinIntegrity" value="Redness/Skin Tear"> Redness/Skin Tear</label>
+        <label class="chk inline-input"><input type="checkbox" name="skinIntegrity" value="Pressure Injury"> Pressure Injury — Location: <input type="text" name="skinIntegrityLocation" class="inline-text"></label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Lymphatic/Immune</h2>
+      <div class="options">
+        <label class="chk"><input type="checkbox" name="lymph" value="Fever"> Fever</label>
+        <label class="chk"><input type="checkbox" name="lymph" value="Chills"> Chills</label>
+        <label class="chk"><input type="checkbox" name="lymph" value="Swollen lymph nodes"> Swollen lymph nodes</label>
+        <label class="chk"><input type="checkbox" name="lymph" value="Tender lymph nodes"> Tender lymph nodes</label>
+        <label class="chk"><input type="checkbox" name="lymph" value="Generalized weakness"> Generalized weakness</label>
+        <label class="chk"><input type="checkbox" name="lymph" value="Sweating"> Sweating</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Respiratory</h2>
+      <div class="options">
+        <label class="chk"><input type="checkbox" name="resp" value="Audible wheezing"> Audible wheezing</label>
+        <label class="chk"><input type="checkbox" name="resp" value="Shortness of breath"> Shortness of breath</label>
+        <label class="chk"><input type="checkbox" name="resp" value="Tripoding"> Tripoding</label>
+        <label class="chk"><input type="checkbox" name="resp" value="Persistent cough"> Persistent cough</label>
+        <label class="chk"><input type="checkbox" name="resp" value="Productive cough"> Productive cough</label>
+        <label class="chk"><input type="checkbox" name="resp" value="Inability to breathe while lying flat"> Inability to breathe while lying flat</label>
+        <label class="chk"><input type="checkbox" name="resp" value="Exercise intolerance"> Exercise intolerance</label>
+        <label class="chk"><input type="checkbox" name="resp" value="Labored breathing"> Labored breathing</label>
+        <label class="chk"><input type="checkbox" name="resp" value="Weakened voice"> Weakened voice</label>
+        <label class="chk"><input type="checkbox" name="resp" value="Barrel chest"> Barrel chest</label>
+        <label class="chk"><input type="checkbox" name="resp" value="Stridor"> Stridor</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Nervous</h2>
+      <div class="options">
+        <label class="chk"><input type="checkbox" name="nervous" value="One-sided weakness (Hemiparesis)"> One-sided weakness (Hemiparesis)</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Paralysis (Hemiplegia)"> Paralysis (Hemiplegia)</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Shuffling gait"> Shuffling gait</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Difficulty speaking/writing (Expressive Aphasia)"> Difficulty speaking/writing (Expressive Aphasia)</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Difficulty Understanding (Receptive Aphasia)"> Difficulty Understanding (Receptive Aphasia)</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Difficulty swallowing (Dysphagia)"> Difficulty swallowing (Dysphagia)</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Slurred speech"> Slurred speech</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Tremors"> Tremors</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Loss of sensation"> Loss of sensation</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Neuralgia"> Neuralgia</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Decreased sensitivity to temperature or pain"> Decreased sensitivity to temperature or pain</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Short term memory loss"> Short term memory loss</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Slowed reflexes"> Slowed reflexes</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Headache"> Headache</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Slowed body movements"> Slowed body movements</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Numbness in feet"> Numbness in feet</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Tingling in feet"> Tingling in feet</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Reduced sensation in feet"> Reduced sensation in feet</label>
+        <label class="chk"><input type="checkbox" name="nervous" value="Shakiness"> Shakiness</label>
+      </div>
+      <div class="options sub">
+        <span class="sub-label">Confusion</span>
+        <label class="chk"><input type="checkbox" name="confusion" value="Confusion"> Confusion</label>
+        <label class="chk"><input type="checkbox" name="confusionOnset" value="Sudden onset"> Sudden onset</label>
+        <label class="chk"><input type="checkbox" name="confusionOnset" value="Chronic"> Chronic</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Gastrointestinal</h2>
+      <div class="options">
+        <label class="chk"><input type="checkbox" name="gi" value="Abdominal Pain"> Abdominal Pain</label>
+        <label class="chk"><input type="checkbox" name="gi" value="Constipation"> Constipation</label>
+        <label class="chk"><input type="checkbox" name="gi" value="Diarrhea"> Diarrhea</label>
+        <label class="chk"><input type="checkbox" name="gi" value="Presence of stoma / Ostomy pouching system"> Presence of stoma / Ostomy pouching system</label>
+        <label class="chk"><input type="checkbox" name="gi" value="Heart Burn"> Heart Burn</label>
+        <label class="chk"><input type="checkbox" name="gi" value="Regurgitation"> Regurgitation</label>
+        <label class="chk"><input type="checkbox" name="gi" value="Nausea"> Nausea</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Urinary</h2>
+      <div class="options">
+        <label class="chk"><input type="checkbox" name="urinary" value="Pain with urination"> Pain with urination</label>
+        <label class="chk"><input type="checkbox" name="urinary" value="Burning during urination (Dysuria)"> Burning during urination (Dysuria)</label>
+        <label class="chk"><input type="checkbox" name="urinary" value="Urinary frequency"> Urinary frequency</label>
+        <label class="chk"><input type="checkbox" name="urinary" value="Presence of stoma"> Presence of stoma</label>
+        <label class="chk"><input type="checkbox" name="urinary" value="Urinary Leakage"> Urinary Leakage</label>
+        <label class="chk"><input type="checkbox" name="urinary" value="Low back pain"> Low back pain</label>
+        <label class="chk"><input type="checkbox" name="urinary" value="Difficulty starting the flow of urine"> Difficulty starting the flow of urine</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Reproductive</h2>
+      <div class="options sub">
+        <span class="sub-label">Female</span>
+        <label class="chk"><input type="checkbox" name="reproFemale" value="Vaginal dryness"> Vaginal dryness</label>
+        <label class="chk"><input type="checkbox" name="reproFemale" value="Vaginal Itchiness"> Vaginal Itchiness</label>
+        <label class="chk"><input type="checkbox" name="reproFemale" value="Vaginal discharge"> Vaginal discharge</label>
+      </div>
+      <div class="options sub">
+        <span class="sub-label">Male</span>
+        <label class="chk"><input type="checkbox" name="reproMale" value="Penile discharge"> Penile discharge</label>
+        <label class="chk"><input type="checkbox" name="reproMale" value="Difficulty sustaining or achieving erection"> Difficulty sustaining or achieving erection</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Endocrine</h2>
+      <div class="options">
+        <label class="chk"><input type="checkbox" name="endocrine" value="Hyperglycemia"> Hyperglycemia</label>
+        <label class="chk"><input type="checkbox" name="endocrine" value="Hypoglycemia"> Hypoglycemia</label>
+      </div>
+    </section>
+
+    <div class="export-row no-print">
+      <button type="button" class="btn btn-primary exportBtn">Export to PDF</button>
+    </div>
+  </div>
+
+  <!-- ===================== CHART 3: I&O Flow Record ===================== -->
+  <div id="chart3" class="sheet" data-storage="cnaChartDraft_chart3" hidden>
+    <div class="sheet-toolbar no-print">
+      <button type="button" class="btn btn-secondary backBtn">&larr; Change Chart</button>
+      <button type="button" class="btn btn-secondary clearBtn">Clear Form</button>
+    </div>
+
+    <h1>CNA End-of-Shift Intake &amp; Output (I&amp;O) Flow Record</h1>
+
+    <div class="row header-row">
+      <label class="field grow-2">Patient Name <input type="text" name="patientName"></label>
+      <label class="field grow">Room # <input type="text" name="roomNumber"></label>
+      <label class="field grow">Date <input type="text" name="date"></label>
+    </div>
+
+    <div class="field-group">
+      <span class="group-label">Shift</span>
+      <div class="options">
+        <label class="chk"><input type="checkbox" name="shiftType" value="8-Hr Day (7a-3p)"> 8-Hr Day (7a–3p)</label>
+        <label class="chk"><input type="checkbox" name="shiftType" value="8-Hr Eve (3p-11p)"> 8-Hr Eve (3p–11p)</label>
+        <label class="chk"><input type="checkbox" name="shiftType" value="8-Hr Night (11p-7a)"> 8-Hr Night (11p–7a)</label>
+        <label class="chk"><input type="checkbox" name="shiftType" value="12-Hr (7a-7p)"> 12-Hr (7a–7p)</label>
+        <label class="chk"><input type="checkbox" name="shiftType" value="12-Hr (7p-7a)"> 12-Hr (7p–7a)</label>
+      </div>
+    </div>
+
+    <section>
+      <h2>Step 1: Intake Summary</h2>
+
+      <div class="field-group">
+        <span class="group-label">A. Solid Food / Meal Consumption (%)</span>
+        <div class="options sub">
+          <span class="sub-label">Breakfast</span>
+          <label class="chk"><input type="checkbox" name="mealBreakfast" value="0%"> 0%</label>
+          <label class="chk"><input type="checkbox" name="mealBreakfast" value="25%"> 25%</label>
+          <label class="chk"><input type="checkbox" name="mealBreakfast" value="50%"> 50%</label>
+          <label class="chk"><input type="checkbox" name="mealBreakfast" value="75%"> 75%</label>
+          <label class="chk"><input type="checkbox" name="mealBreakfast" value="100%"> 100%</label>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Lunch</span>
+          <label class="chk"><input type="checkbox" name="mealLunch" value="0%"> 0%</label>
+          <label class="chk"><input type="checkbox" name="mealLunch" value="25%"> 25%</label>
+          <label class="chk"><input type="checkbox" name="mealLunch" value="50%"> 50%</label>
+          <label class="chk"><input type="checkbox" name="mealLunch" value="75%"> 75%</label>
+          <label class="chk"><input type="checkbox" name="mealLunch" value="100%"> 100%</label>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Dinner</span>
+          <label class="chk"><input type="checkbox" name="mealDinner" value="0%"> 0%</label>
+          <label class="chk"><input type="checkbox" name="mealDinner" value="25%"> 25%</label>
+          <label class="chk"><input type="checkbox" name="mealDinner" value="50%"> 50%</label>
+          <label class="chk"><input type="checkbox" name="mealDinner" value="75%"> 75%</label>
+          <label class="chk"><input type="checkbox" name="mealDinner" value="100%"> 100%</label>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Snacks</span>
+          <label class="chk"><input type="checkbox" name="mealSnacks" value="0%"> 0%</label>
+          <label class="chk"><input type="checkbox" name="mealSnacks" value="25%"> 25%</label>
+          <label class="chk"><input type="checkbox" name="mealSnacks" value="50%"> 50%</label>
+          <label class="chk"><input type="checkbox" name="mealSnacks" value="75%"> 75%</label>
+          <label class="chk"><input type="checkbox" name="mealSnacks" value="100%"> 100%</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">B. Fluid Intake (mL / cc)</span>
+        <div class="row">
+          <label class="field grow">Oral Liquids (Water, Juice, Coffee, Soup, Jell-O) — mL <input type="text" name="oralLiquidsMl"></label>
+          <label class="field grow">Ice Chips (record 1/2 total melted volume) — mL <input type="text" name="iceChipsMl"></label>
+        </div>
+        <div class="row">
+          <label class="field grow">Total Shift Intake — mL <input type="text" name="totalShiftIntake"></label>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Step 2: Output Summary &amp; Characteristics</h2>
+
+      <div class="field-group">
+        <span class="group-label">1. Urine Output — Type / Method</span>
+        <div class="options">
+          <label class="chk inline-input"><input type="checkbox" name="urineType" value="Voided"> Voided — Number of voids: <input type="text" name="urineVoidedCount" class="inline-text small"> | Total Measured Volume: <input type="text" name="urineVoidedVolume" class="inline-text small"> mL</label>
+          <label class="chk inline-input"><input type="checkbox" name="urineType" value="Incontinence"> Incontinence — Number of brief/pad changes: <input type="text" name="urineIncontinenceCount" class="inline-text small"></label>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Incontinence estimated volume / size</span>
+          <label class="chk"><input type="checkbox" name="urineIncontinenceSize" value="Small/Damp"> Small / Damp</label>
+          <label class="chk"><input type="checkbox" name="urineIncontinenceSize" value="Medium/Moderate"> Medium / Moderate</label>
+          <label class="chk"><input type="checkbox" name="urineIncontinenceSize" value="Large/Saturated"> Large / Saturated</label>
+        </div>
+        <div class="options">
+          <label class="chk inline-input"><input type="checkbox" name="urineType" value="Foley/Indwelling Catheter"> Foley / Indwelling Catheter — <input type="text" name="urineFoleyMl" class="inline-text small"> mL</label>
+          <label class="chk inline-input"><input type="checkbox" name="urineType" value="Urostomy"> Urostomy — <input type="text" name="urineUrostomyMl" class="inline-text small"> mL</label>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Urine color</span>
+          <label class="chk"><input type="checkbox" name="urineColor" value="Clear/Straw"> Clear / Straw</label>
+          <label class="chk"><input type="checkbox" name="urineColor" value="Dark Yellow"> Dark Yellow</label>
+          <label class="chk"><input type="checkbox" name="urineColor" value="Amber"> Amber</label>
+          <label class="chk"><input type="checkbox" name="urineColor" value="Red/Pink-tinged"> Red / Pink-tinged</label>
+          <label class="chk"><input type="checkbox" name="urineColor" value="Tea-colored"> Tea-colored</label>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Urine clarity / features</span>
+          <label class="chk"><input type="checkbox" name="urineClarity" value="Clear"> Clear</label>
+          <label class="chk"><input type="checkbox" name="urineClarity" value="Cloudy"> Cloudy</label>
+          <label class="chk"><input type="checkbox" name="urineClarity" value="Sediment present"> Sediment present</label>
+          <label class="chk"><input type="checkbox" name="urineClarity" value="Foul odor"> Foul odor</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">2. Stool &amp; Ostomy Output — Type / Method</span>
+        <div class="options">
+          <label class="chk inline-input"><input type="checkbox" name="stoolType" value="Bowel Movement (BM)"> Bowel Movement (BM) — Number of occurrences: <input type="text" name="stoolBmCount" class="inline-text small"> | Measured: <input type="text" name="stoolBmMl" class="inline-text small"> mL</label>
+        </div>
+        <div class="options">
+          <label class="chk"><input type="checkbox" name="stoolType" value="Ostomy"> Ostomy</label>
+          <label class="chk"><input type="checkbox" name="ostomyType" value="Colostomy"> Colostomy</label>
+          <label class="chk"><input type="checkbox" name="ostomyType" value="Ileostomy"> Ileostomy</label>
+          <label class="chk inline-input">Total Volume: <input type="text" name="ostomyTotalVolume" class="inline-text small"> mL</label>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Stool consistency</span>
+          <label class="chk"><input type="checkbox" name="stoolConsistency" value="Formed"> Formed</label>
+          <label class="chk"><input type="checkbox" name="stoolConsistency" value="Soft"> Soft</label>
+          <label class="chk"><input type="checkbox" name="stoolConsistency" value="Loose"> Loose</label>
+          <label class="chk"><input type="checkbox" name="stoolConsistency" value="Liquid/Watery"> Liquid / Watery</label>
+          <label class="chk"><input type="checkbox" name="stoolConsistency" value="Hard/Pellets"> Hard / Pellets</label>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Stool color</span>
+          <label class="chk"><input type="checkbox" name="stoolColor" value="Brown"> Brown</label>
+          <label class="chk"><input type="checkbox" name="stoolColor" value="Green"> Green</label>
+          <label class="chk"><input type="checkbox" name="stoolColor" value="Black/Tarry"> Black / Tarry</label>
+          <label class="chk"><input type="checkbox" name="stoolColor" value="Clay/Pale"> Clay / Pale</label>
+          <label class="chk"><input type="checkbox" name="stoolColor" value="Bloody"> Bloody</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">3. Mixed Output</span>
+        <div class="options">
+          <label class="chk inline-input"><input type="checkbox" name="mixedOutput" value="Incontinent Urine + Stool Mixed"> Incontinent Urine + Stool Mixed — Number of occurrences: <input type="text" name="mixedOutputCount" class="inline-text small"> | Measured: <input type="text" name="mixedOutputMl" class="inline-text small"> mL</label>
+        </div>
+        <div class="row sub">
+          <label class="field grow">Characteristics / Description <input type="text" name="mixedOutputDescription"></label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">4. Emesis (Vomit)</span>
+        <div class="row">
+          <label class="field grow">Occurrences <input type="text" name="emesisOccurrences"></label>
+          <label class="field">Total Volume (mL) <input type="text" name="emesisVolume"></label>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Emesis color / type</span>
+          <label class="chk"><input type="checkbox" name="emesisType" value="Undigested Food"> Undigested Food</label>
+          <label class="chk"><input type="checkbox" name="emesisType" value="Clear/Liquid"> Clear / Liquid</label>
+          <label class="chk"><input type="checkbox" name="emesisType" value="Green/Bilious"> Green / Bilious</label>
+          <label class="chk"><input type="checkbox" name="emesisType" value="Dark/Coffee-ground"> Dark / "Coffee-ground"</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="group-label">5. Drains (JP, Hemovac, Penrose, etc.)</span>
+        <div class="row">
+          <label class="field grow">Drain #1 Site / Type <input type="text" name="drain1Site"></label>
+          <label class="field">Volume (mL) <input type="text" name="drain1Volume"></label>
+        </div>
+        <div class="row">
+          <label class="field grow">Drain #2 Site / Type <input type="text" name="drain2Site"></label>
+          <label class="field">Volume (mL) <input type="text" name="drain2Volume"></label>
+        </div>
+        <div class="options sub">
+          <span class="sub-label">Drain appearance</span>
+          <label class="chk"><input type="checkbox" name="drainAppearance" value="Serous (Clear Yellow)"> Serous (Clear Yellow)</label>
+          <label class="chk"><input type="checkbox" name="drainAppearance" value="Serosanguinous (Pink)"> Serosanguinous (Pink)</label>
+          <label class="chk"><input type="checkbox" name="drainAppearance" value="Sanguinous (Bright Red)"> Sanguinous (Bright Red)</label>
+          <label class="chk"><input type="checkbox" name="drainAppearance" value="Purulent (Pus/Thick)"> Purulent (Pus/Thick)</label>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Step 3: Shift Totals &amp; Sign-Off</h2>
+      <div class="row">
+        <label class="field grow">Total Shift Fluid Intake (mL) <input type="text" name="totalFluidIntake"></label>
+        <label class="field grow">Total Shift Measured Output (mL) <input type="text" name="totalMeasuredOutput"></label>
+      </div>
+    </section>
+
+    <div class="export-row no-print">
+      <button type="button" class="btn btn-primary exportBtn">Export to PDF</button>
+    </div>
+  </div>
+
+</main>
+
+<script src="app.js"></script>
 </body>
-
 </html>
